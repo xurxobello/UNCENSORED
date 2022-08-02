@@ -6,6 +6,9 @@ require ("dotenv").config (); //leera el archivo .env desde donde lo ejecutemos
 const { getConnection } = require ('./db');
 
 
+
+
+
 /* Creamos una funcion main que:
 -cree una variable connection que guarde la referencia a la conexión, que intente conectarse: si es ok se libera la conexion y salimos del proceso, sino nos lanza un error
 */
