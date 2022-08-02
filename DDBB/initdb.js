@@ -45,6 +45,21 @@ await connection.query (`
     );
     `);
 
+await connection.query (`
+    CREATE TABLE likes {
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        user_id INTEGER,
+        comment_id INTEGER,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id)  REFERENCES
+    }
+
+
+
+
+`)
+
+
 
     } catch (error) {
     console.error(error);
