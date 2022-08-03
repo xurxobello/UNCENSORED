@@ -22,7 +22,7 @@ async function main () {
     //Antes de crear tablas, nos aseguramos de que no haya otra creada.
 
     console.log( "Deleting existing Tables");
-//y si hay alguna creada, me borras primero el comentario y luego el usuario, al revés crearía conlicto pq hemos metido en la tabla  comments el user_id como FOREING KEY.
+//y si hay alguna creada, me borras primero los likes y dislikes, luego el comentario y luego el usuario, al revés crearía conlicto pq hemos metido en la tabla  comments el user_id como FOREING KEY.
 await connection.query ("DROP TABLE IF EXISTS likes")
 await connection.query ("DROP TABLE IF EXISTS dislikes")
 await connection.query ("DROP TABLE IF EXISTS comments");
