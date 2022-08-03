@@ -3,11 +3,25 @@ require ("dotenv").config (); // carga las variables de entorno
 const express = require ("express");
 const morgan = require ("morgan");
 
+module.exports = { // cobjeto copiado de users.js para exportarlo aquí.
+    newUserController,
+    getUserController,
+    loginController
+};
+
 const app= express(); //donde definimos los middleware y para que escuche en un puerto (lsiten),permitiendo que escuche peticiones http, pasandola por todos los middelware y rutas que se defina.
 
 app.use (morgan("dev"));
 
-//RUTAS- ENDPOINTS
+//RUTAS- ENDPOINTS. 
+//rutas de usuario
+
+app.post ("/user", newUserController);
+app.post ("/user/:id", getUserController);
+app.post ("/login", loginController);
+
+//rutas de comments
+
 
 //MIDDLEWARE 404. Gestiona peticiones que no caen en ninguna ruta.
 

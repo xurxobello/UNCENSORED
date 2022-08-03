@@ -23,8 +23,11 @@ async function main () {
 
     console.log( "Deleting existing Tables");
 //y si hay alguna creada, me borras primero el comentario y luego el usuario, al revés crearía conlicto pq hemos metido en la tabla  comments el user_id como FOREING KEY.
+await connection.query ("DROP TABLE IF EXISTS likes")
+await connection.query ("DROP TABLE IF EXISTS dislikes")
 await connection.query ("DROP TABLE IF EXISTS comments");
 await connection.query ("DROP TABLE IF EXISTS users");
+
 
 console.log(" Generating Tables");
 
@@ -47,22 +50,26 @@ await connection.query (`
         FOREIGN KEY (user_id) REFERENCES users(id)
     );
     `);
-
-await connection.query (`
-    CREATE TABLE likes {
+    await connection.query(`
+    CREATE TABLE  likes (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        user_id INTEGER,
-        comment_id INTEGER,
+        user_id INTEGER NOT NULL,
+        text_id INTEGER,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id)  REFERENCES
-    }
-
-
-
-
-`)
-
-
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (text_id) REFERENCES comments(id)
+    )
+    `)
+    await connection.query(`
+    CREATE TABLE  dislikes (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        user_id INTEGER NOT NULL,
+        text_id INTEGER,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (text_id) REFERENCES comments(id)
+    )
+    `)
 
     } catch (error) {
     console.error(error);
