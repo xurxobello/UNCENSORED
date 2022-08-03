@@ -17,6 +17,11 @@ const {
     deleteCommentController,
 } = require ("./controllers/comments");
 
+const {
+    thumbUp,
+    thumbDown
+
+} = require ("./controllers/votes");
 
 
 const app= express(); //donde definimos los middleware y para que escuche en un puerto (lsiten),permitiendo que escuche peticiones http, pasandola por todos los middelware y rutas que se defina.
@@ -37,6 +42,12 @@ app.post ("/login", loginController); // Login de usuario. Devuelve token
  app.post ("/", newCommentController); // Permite crear un comment
  app.get ("/comment/:id", getSingleCommentController); // Devuelve un comment.
  app.delete ("/comment/:id", deleteCommentController); // Borra un comment, pero solo si eres tú el que lo ha creado.
+
+ // rutas de votos
+
+
+
+ 
 
 //MIDDLEWARE 404. Gestiona peticiones que no caen en ninguna ruta.
 
