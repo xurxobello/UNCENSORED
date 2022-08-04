@@ -1,7 +1,9 @@
-const thumbUp = async (req, res, next) => {};
-const thumbDown = async (req, res, next) => {};
+const thumbUpController = async (req, res, next) => {};
+const thumbDownController = async (req, res, next) => {};
+
 
 module.exports =  {
-    thumbUp,
-    thumbDown
-}
+    thumbUpController,
+    thumbDownController,
+    
+};

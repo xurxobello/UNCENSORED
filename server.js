@@ -10,17 +10,16 @@ const  {// objeto copiado de users.js para exportarlo aquí.
     loginController,
 } = require ( "./controllers/users");
 
-const {
+const { // objeto copiado de users.js para exportarlo aquí.
     getCommentController,
     newCommentController,
     getSingleCommentController,
     deleteCommentController,
 } = require ("./controllers/comments");
 
-const {
-    thumbUp,
-    thumbDown
-
+const { // objeto copiado de users.js para exportarlo aquí.
+    thumbUpController,
+    thumbDownController,   
 } = require ("./controllers/votes");
 
 
@@ -45,6 +44,8 @@ app.post ("/login", loginController); // Login de usuario. Devuelve token
 
  // rutas de votos
 
+app.post ("/", thumbUpController); //permite votar positivamente
+app.post ("/", thumbDownController); // permite votar negativamente
 
 
  
