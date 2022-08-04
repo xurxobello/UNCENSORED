@@ -31,10 +31,7 @@ console.log(" Generating Tables");
 await connection.query (`
     CREATE TABLE users (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        username VARCHAR (20) UNIQUE NOT NULL,
-        bio VARCHAR (250),
         name VARCHAR (20),
-        last_name VARCHAR (50),
         password VARCHAR (100) NOT NULL, 
         email  VARCHAR (100) UNIQUE NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -47,7 +44,6 @@ await connection.query (`
         user_id INTEGER NOT NULL,
         title VARCHAR (250) NOT NULL,
         text VARCHAR (500) NOT NULL,
-        image VARCHAR (100),
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id)
     );

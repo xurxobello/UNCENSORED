@@ -24,7 +24,7 @@ const { // objeto copiado de users.js para exportarlo aquí.
 
 
 const app= express(); //donde definimos los middleware y para que escuche en un puerto (lsiten),permitiendo que escuche peticiones http, pasandola por todos los middelware y rutas que se defina.
-
+app.use (express.json()); //Permite procesar lo que hay en el body de las peticiones. Por defecto express no lo hace.
 app.use (morgan("dev"));
 
 //RUTAS- ENDPOINTS. 
