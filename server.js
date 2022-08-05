@@ -17,6 +17,8 @@ const { // objeto copiado de users.js para exportarlo aquí.
     deleteCommentController,
 } = require ("./controllers/comments");
 
+const {authUser} = require ("./middlewares/auth")
+
 const { // objeto copiado de users.js para exportarlo aquí.
     thumbUpController,
     thumbDownController,   
@@ -31,14 +33,14 @@ app.use (morgan("dev"));
 
 //rutas de usuario
 
-app.post ("/user", newUserController); //Registro usuario
+app.post ("/user",  newUserController); //Registro usuario
 app.get ("/user/:id", getUserController); // Devuelve info  del usuario
 app.post ("/login", loginController); // Login de usuario. Devuelve token
 
 //rutas de comments
 
+ app.post ("/", authUser ,newCommentController); // Permite crear un comment
  app.get ("/", getCommentController); // lista todos los comments
- app.post ("/", newCommentController); // Permite crear un comment
  app.get ("/comment/:id", getSingleCommentController); // Devuelve un comment.
  app.delete ("/comment/:id", deleteCommentController); // Borra un comment, pero solo si eres tú el que lo ha creado.
 

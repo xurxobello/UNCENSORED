@@ -1,6 +1,28 @@
 const bcrypt = require ("bcrypt");
 const { generateError } = require("../helpers");
-const {getConnection} = require ("./DDBB")
+const {getConnection} = require ("../DDBB/db")
+
+const getUserByEmail = async (email) => {
+    let connection;
+
+    try {
+        connection = await getConnection ();
+        const [result] = await connection.query(
+            `SELECT * FROM users WHERE email=? 
+            `,
+            [email]
+        );
+        if (result.lenght === 0){
+            throw generateError ("No hay ningún usuario con ese email", 404)
+        }
+        return result [0];
+        } finally {
+        if (connection) connection.release ();
+    }
+
+}
+
+
 
 // devuelve la información pública de un usuario por su id
 const getUserById = async (id) => {
@@ -22,9 +44,6 @@ const getUserById = async (id) => {
     }
 
 }
-
-
-
 
 
 // Creamos aqui todas las funciones que haran el "trabajo sucio" de relación con la base de datos.
@@ -71,4 +90,5 @@ module.exports ={
 module.exports = {
     createUser,
     getUserById,
+    getUserByEmail,
 };
