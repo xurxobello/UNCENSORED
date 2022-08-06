@@ -6,7 +6,7 @@ const {createUser, getUserByEmail} = require ("../DDBB/usersdb");
 const {getUserById} = require("../DDBB/usersdb");
 
 
-const newUserController = async ( req, res, next) => { //
+const newUserController = async ( req, res, next) => { 
     try{
         const {email, password} =req.body;
 

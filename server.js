@@ -10,7 +10,7 @@ const  {// objeto copiado de users.js para exportarlo aquí.
     loginController,
 } = require ( "./controllers/users");
 
-const { // objeto copiado de users.js para exportarlo aquí.
+const { // objeto copiado de comments.js para exportarlo aquí.
     getCommentController,
     newCommentController,
     getSingleCommentController,
@@ -19,10 +19,10 @@ const { // objeto copiado de users.js para exportarlo aquí.
 
 const {authUser} = require ("./middlewares/auth")
 
-const { // objeto copiado de users.js para exportarlo aquí.
-    thumbUpController,
-    thumbDownController,   
+const { // objeto copiado de votes.js para exportarlo aquí.
+    newVote,   
 } = require ("./controllers/votes");
+
 
 
 const app= express(); //donde definimos los middleware y para que escuche en un puerto (lsiten),permitiendo que escuche peticiones http, pasandola por todos los middelware y rutas que se defina.
@@ -46,11 +46,9 @@ app.post ("/login", loginController); // Login de usuario. Devuelve token
 
  // rutas de votos
 
-app.post ("/", thumbUpController); //permite votar positivamente
-app.post ("/", thumbDownController); // permite votar negativamente
+app.post ("/", newVote); //permite votar crear un voto  sobre un comment.
 
 
- 
 
 //MIDDLEWARE 404. Gestiona peticiones que no caen en ninguna ruta.
 

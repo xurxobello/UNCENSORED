@@ -84,9 +84,7 @@ return newUser.insertId;
     }
 };
 
-module.exports ={
-    createUser,
-};
+
 module.exports = {
     createUser,
     getUserById,
