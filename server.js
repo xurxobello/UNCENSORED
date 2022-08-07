@@ -20,7 +20,7 @@ const { // objeto copiado de comments.js para exportarlo aquí.
 const {authUser} = require ("./middlewares/auth")
 
 const { // objeto copiado de votes.js para exportarlo aquí.
-    newVote,   
+    newVoteController,   
 } = require ("./controllers/votes");
 
 
@@ -46,7 +46,7 @@ app.post ("/login", loginController); // Login de usuario. Devuelve token
 
  // rutas de votos
 
-app.post ("/", newVote); //permite votar crear un voto  sobre un comment.
+app.post ("/", newVoteController); //permite votar crear un voto  sobre un comment.
 
 
 
