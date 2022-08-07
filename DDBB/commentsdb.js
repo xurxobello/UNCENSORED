@@ -59,6 +59,8 @@ const getAllComments = async () => {
     }
 }
 
+
+
 const createComment = async (userId, text) => {
     let connection;
 
