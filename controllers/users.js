@@ -2,19 +2,17 @@
 const bcrypt = require ("bcrypt");
 const jwt = require ("jsonwebtoken")
 const {generateError} = require ("../helpers");
-const {createUser, getUserByEmail} = require ("../DDBB/usersdb");
-const {getUserById} = require("../DDBB/usersdb");
-
+const {createUser, getUserById, getUserByEmail} = require ("../DDBB/usersdb");
 
 const newUserController = async ( req, res, next) => { 
     try{
-        const {email, password} =req.body;
+        const {email, password, name} =req.body;
 
 				// sustituir por joi
-        if (!email || !password){
-					throw generateError ("imprescindible mail y password",400);
+        if (!email || !password || !name){
+					throw generateError ("imprescindible email name y password",400);
         }
-				const id= await createUser (email, password);
+				const id= await createUser (email, password, name);
                 //console.log(id);
 			
         res.send ({

@@ -34,15 +34,15 @@ app.use (morgan("dev"));
 //rutas de usuario
 
 app.post ("/user",  newUserController); //Registro usuario
-app.get ("/user/:id", getUserController); // Devuelve info  del usuario
-app.post ("/login", loginController); // Login de usuario. Devuelve token
+app.get ("/user/:id", authUser, getUserController); // Devuelve info  del usuario
+app.post ("/user/login", loginController); // Login de usuario. Devuelve token
 
 //rutas de comments
 
- app.post ("/", authUser ,newCommentController); // Permite crear un comment
- app.get ("/", getCommentController); // lista todos los comments
+ app.post ("/comment", authUser ,newCommentController); // Permite crear un comment
+ app.get ("/comment", getCommentController); // lista todos los comments
  app.get ("/comment/:id", getSingleCommentController); // Devuelve un comment.
- app.delete ("/comment/:id", deleteCommentController); // Borra un comment, pero solo si eres tú el que lo ha creado.
+ app.delete ("/comment/:id", authUser, deleteCommentController); // Borra un comment, pero solo si eres tú el que lo ha creado.
 
  // rutas de votos
 

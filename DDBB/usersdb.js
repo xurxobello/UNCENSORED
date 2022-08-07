@@ -31,14 +31,14 @@ const getUserById = async (id) => {
     try {
         connection = await getConnection ();
         const [result] = await connection.query(
-            `SELECT id email,  created_at FROM users WHERE id=? 
+            `SELECT id, email, created_at FROM users WHERE id=? 
             `,
             [id]
         );
         if (result.lenght === 0){
             throw generateError ("No hay ningún usuario con ese ID", 404)
         }
-        return result [0];
+        return result[0];
         } finally {
         if (connection) connection.release ();
     }
@@ -49,7 +49,7 @@ const getUserById = async (id) => {
 // Creamos aqui todas las funciones que haran el "trabajo sucio" de relación con la base de datos.
 
 //1. Crear un usuario en la DDBB y devuelve su ID
-const createUser = async (email, password) => { // recibe un mail y una password
+const createUser = async (email, password, name) => { // recibe un mail y una password
     let connection; // crea una conexion
 
     try {
@@ -71,9 +71,9 @@ const passwordHash = await bcrypt.hash(password, 8)
 
 // 4. Crear el usuario      
 const [newUser] = await connection.query(`
-    INSERT INTO users (email, password) VALUES (?,?)
+    INSERT INTO users (email, password, name) VALUES (?,?,?)
 `,
-[email, passwordHash]
+[email, passwordHash, name]
 );
 
 // 5. Devolver un id
