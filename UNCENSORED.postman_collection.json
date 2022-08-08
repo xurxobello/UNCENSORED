@@ -64,6 +64,31 @@
 			"response": []
 		},
 		{
+			"name": "User details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Comment creation",
 			"request": {
 				"method": "POST",
@@ -90,6 +115,39 @@
 					"port": "3000",
 					"path": [
 						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment vote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU5OTc3NjcyLCJleHAiOjE2NjI1Njk2NzJ9.v7lxpf2Qt12BLM07H_vdLsrFkOW7mS-zVClhBoJZzxw"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"vote\":\"0\", \"comment_id\":\"1\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/comment/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"comment",
+						"vote"
 					]
 				}
 			},
@@ -164,31 +222,6 @@
 					"path": [
 						"comment",
 						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User details",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/user/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"user",
-						"1"
 					]
 				}
 			},

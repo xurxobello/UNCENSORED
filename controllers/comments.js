@@ -24,8 +24,8 @@ const newCommentController = async (req, res, next) => {
     if (!text) {
       throw generateError("'text' is a required field", 400);
     }
-    console.log(req.userId)
-    const id = await createComment(req.userId, req.body.text, req.body.title);
+    console.log(req.userId);
+    const id = await createComment(req.userId, text, req.body.title);
 
     res.send({
       status: 'ok',
