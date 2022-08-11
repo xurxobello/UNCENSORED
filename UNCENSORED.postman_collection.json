@@ -121,6 +121,39 @@
 			"response": []
 		},
 		{
+			"name": "User Mail Edit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjYwMTY1MDE2LCJleHAiOjE2NjI3NTcwMTZ9.xox67FHJTg__s9lTFewTguQt2zYOOLBXNmujTKWpWnA"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"fulanito@mydomain.gl\"}\n{\"email\":\"hello@mydomain.gl\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Comment vote",
 			"request": {
 				"method": "POST",
