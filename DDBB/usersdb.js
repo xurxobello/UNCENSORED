@@ -87,6 +87,13 @@ const createUser = async (email, password, name) => {
 
     // 4. Crear el usuario
     const [newUser] = await connection.query(
+      
+      const schema = Joi.object().keys({
+
+    name: Joi.string().min(3).max(20).required(),
+    email: Joi.string().email().required(),
+    password: Joi.number().min(18).integer() 
+})
       `
     INSERT INTO users (email, password, name) VALUES (?,?,?)
 `,
