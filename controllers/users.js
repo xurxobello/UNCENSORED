@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Joi = require('@hapi/joi');
 const { generateError } = require('../helpers');
 const {
   createUser,
