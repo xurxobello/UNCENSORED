@@ -9,6 +9,7 @@ const {
   newUserController,
   getUserController,
   loginController,
+  editUserMailController,
 } = require('./controllers/users');
 
 const {
@@ -37,6 +38,7 @@ app.use(morgan('dev'));
 app.post('/user', newUserController); //Registro usuario
 app.get('/user/:id', authUser, getUserController); // Devuelve info  del usuario
 app.post('/user/login', loginController); // Login de usuario. Devuelve token
+app.put('/user/edit', editUserMailController); // modificación del mail.
 
 //rutas de comments
 
@@ -44,7 +46,6 @@ app.post('/comment', authUser, newCommentController); // Permite crear un commen
 app.get('/comment', getCommentController); // lista todos los comments
 app.get('/comment/:id', getSingleCommentController); // Devuelve un comment.
 app.delete('/comment/:id', authUser, deleteCommentController); // Borra un comment, pero solo si eres tú el que lo ha cread
-
 app.post('/comment/vote', authUser, newVoteController); //permite votar crear un voto  sobre un comment.
 
 //MIDDLEWARE 404. Gestiona peticiones que no caen en ninguna ruta.

@@ -9,7 +9,7 @@ const getUserByEmail = async (email) => {
     connection = await getConnection();
     const [result] = await connection.query(
       `SELECT * FROM users WHERE email=? 
-            `,
+      `,
       [email]
     );
     if (result.lenght === 0) {
@@ -21,7 +21,27 @@ const getUserByEmail = async (email) => {
   }
 };
 
+// Edicion del campo email
+
+const editUserMail = async (email) => {
+  let connection;
+  try {
+    connection = await getConnection();
+    const [newEmail] = await connection.query(
+      `
+    UPDATE users SET email = ?;
+    `,
+      [email]
+    );
+
+    return newEmail;
+  } finally {
+    if (connection) connection.release();
+  }
+};
+
 // devuelve la información pública de un usuario por su id
+
 const getUserById = async (id) => {
   let connection;
 
@@ -41,7 +61,7 @@ const getUserById = async (id) => {
   }
 };
 
-// Creamos aqui todas las funciones que haran el "trabajo sucio" de relación con la base de datos.
+//CREAR USUARIO. Requiere de 4 pasos.
 
 //1. Crear un usuario en la DDBB y devuelve su ID
 const createUser = async (email, password, name) => {
@@ -89,6 +109,7 @@ const createUser = async (email, password, name) => {
 
 module.exports = {
   createUser,
+  editUserMail,
   getUserById,
   getUserByEmail,
 };
