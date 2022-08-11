@@ -1,13 +1,17 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { generateError } = require('../helpers');
-const { createUser, getUserById, getUserByEmail } = require('../DDBB/usersdb');
+const {
+  createUser,
+  getUserById,
+  getUserByEmail,
+  editUserMail,
+} = require('../DDBB/usersdb');
 
 const newUserController = async (req, res, next) => {
   try {
     const { email, password, name } = req.body;
 
-    // sustituir por joi
     if (!email || !password || !name) {
       throw generateError('imprescindible email name y password', 400);
     }
@@ -36,6 +40,26 @@ const getUserController = async (req, res, next) => {
   }
 };
 
+const editUserMailController = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      await generateError('email no correcto', 401);
+    }
+
+    const UpdateUserEmail = await editUserMail(email);
+    res.send({
+      status: 'ok',
+      data: {
+        UpdateUserEmail,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 const loginController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -45,7 +69,6 @@ const loginController = async (req, res, next) => {
 
     // Recogemos de la DDBB  los datos del usuario con ese mail
     const user = await getUserByEmail(email);
-    7;
 
     // Comprobación de contraseñas  (Sino Error)
     const validPassword = await bcrypt.compare(password, user.password); // esto da true si coinciden y tienen el mismo HASH
@@ -79,4 +102,5 @@ module.exports = {
   newUserController,
   getUserController,
   loginController,
+  editUserMailController,
 };
