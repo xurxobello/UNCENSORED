@@ -13,7 +13,7 @@ const newUserController = async (req, res, next) => {
     const { email, password, name } = req.body;
 
     if (!email || !password || !name) {
-      throw generateError('imprescindible email name y password', 400);
+      throw generateError('Name and email are compulsory fields', 400);
     }
     const id = await createUser(email, password, name);
     //console.log(id);
@@ -45,7 +45,7 @@ const editUserMailController = async (req, res, next) => {
     const { email } = req.body;
 
     if (!email) {
-      await generateError('email no correcto', 401);
+      await generateError('Invalid email', 401);
     }
 
     const UpdateUserEmail = await editUserMail(email);
@@ -64,7 +64,7 @@ const loginController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      throw generateError('Imprescindible email y password', 400);
+      throw generateError('Email and password are required', 400);
     }
 
     // Recogemos de la DDBB  los datos del usuario con ese mail
@@ -73,7 +73,7 @@ const loginController = async (req, res, next) => {
     // Comprobación de contraseñas  (Sino Error)
     const validPassword = await bcrypt.compare(password, user.password); // esto da true si coinciden y tienen el mismo HASH
     if (!validPassword) {
-      throw generateError('La contraseña no coincide', 401);
+      throw generateError('Incorrect password', 401);
     }
 
     // Creación del PAYLOAD del token
@@ -98,7 +98,7 @@ const loginController = async (req, res, next) => {
 };
 
 module.exports = {
-  // cogemos este objeto  y lo copiamos en server.js que es donde lo vamos a importar.
+  // cogemos este objeto  y lo copiamos en server.js que es donde se importa.
   newUserController,
   getUserController,
   loginController,

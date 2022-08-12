@@ -32,7 +32,7 @@ const getAllCommentsById = async (id) => {
     );
 
     if (result.length === 0) {
-      throw generateError(`Comment con id: ${id} no existe`, 404);
+      throw generateError(`Comment with id: ${id} does not exist`, 404);
     }
 
     return result[0];
@@ -74,7 +74,7 @@ const createComment = async (userId, text, title) => {
   }
 };
 
-module.exports = {
+module.exports = { // exportación a controllers/comments.js
   createComment,
   getAllComments,
   getAllCommentsById,

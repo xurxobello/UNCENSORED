@@ -13,7 +13,7 @@ const getUserByEmail = async (email) => {
       [email]
     );
     if (result.lenght === 0) {
-      throw generateError('No hay ningún usuario con ese email', 404);
+      throw generateError('No user found with this mail', 404);
     }
     return result[0];
   } finally {
@@ -53,7 +53,7 @@ const getUserById = async (id) => {
       [id]
     );
     if (result.lenght === 0) {
-      throw generateError('No hay ningún usuario con ese ID', 404);
+      throw generateError('No user found with this mail ID', 404);
     }
     return result[0];
   } finally {
@@ -79,7 +79,7 @@ const createUser = async (email, password, name) => {
     );
 
     if (user.lenght > 0) {
-      throw generateError('Ya existe un usuario en la DDBB con ese mail', 409);
+      throw generateError('This email address is already used by another user', 409);
     }
 
     //3. Encriptar password
@@ -87,7 +87,6 @@ const createUser = async (email, password, name) => {
 
     // 4. Crear el usuario
     const [newUser] = await connection.query(
-      
       `
     INSERT INTO users (email, password, name) VALUES (?,?,?)
 `,

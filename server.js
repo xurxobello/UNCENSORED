@@ -1,8 +1,8 @@
 'use strict';
-require('dotenv').config(); // carga las variables de entorno
+require('dotenv').config(); // carga las variables de entorno. Nos deja acceder a .env
 
-const express = require('express');
-const morgan = require('morgan');
+const express = require('express'); 
+const morgan = require('morgan'); // Ayuda a registrar las solicitudes HTTP para su seguimiento y pruebas.
 
 const {
   // objeto copiado de users.js para exportarlo aquí.
@@ -27,7 +27,7 @@ const {
   newVoteController,
 } = require('./controllers/votes');
 
-const app = express(); //donde definimos los middleware y para que escuche en un puerto (lsiten),permitiendo que escuche peticiones http, pasandola por todos los middelware y rutas que se defina.
+const app = express(); //donde definimos los middleware y para que escuche en un puerto (listen),permitiendo que escuche peticiones http, pasándola por todos los middelware y rutas que se defina.
 app.use(express.json()); //Permite procesar lo que hay en el body de las peticiones. Por defecto express no lo hace.
 app.use(morgan('dev'));
 
@@ -38,7 +38,7 @@ app.use(morgan('dev'));
 app.post('/user', newUserController); //Registro usuario
 app.get('/user/:id', authUser, getUserController); // Devuelve info  del usuario
 app.post('/user/login', loginController); // Login de usuario. Devuelve token
-app.put('/user/edit', editUserMailController); // modificación del mail.
+app.put ('/user/edit',authUser,editUserMailController ); // modificación del mail.
 
 //rutas de comments
 
