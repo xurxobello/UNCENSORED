@@ -55,8 +55,8 @@ await connection.query (`
         vote BOOLEAN NOT NULL,
         user_id INTEGER NOT NULL,
         comment_id INTEGER NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (comment_id) REFERENCES comments(id)
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (comment_id) REFERENCES comments(id) ON DELETE CASCADE
     )
     `)
 
