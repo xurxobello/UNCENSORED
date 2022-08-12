@@ -7,7 +7,7 @@ const newVoteController = async (req, res, next) => {
 
     if (!vote || !comment_id) {
       throw generateError(
-        ' los campos vote y comment_id son obligatorios',
+        ' vote and comment_id are required',
         400
       );
     }
@@ -16,7 +16,7 @@ const newVoteController = async (req, res, next) => {
 
     res.send({
       status: 'ok',
-      message: `Vote con id: ${id} creado correctamente`,
+      message: `Vote with id: ${id} succesfully created`,
     });
   } catch (error) {
     next(error);
