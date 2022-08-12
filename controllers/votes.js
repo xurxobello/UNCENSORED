@@ -3,20 +3,17 @@ const { generateError } = require('../helpers');
 
 const newVoteController = async (req, res, next) => {
   try {
-    const { vote, comment_id } = req.body;
+    const { vote } = req.body;
 
-    if (!vote || !comment_id) {
-      throw generateError(
-        ' los campos vote y comment_id son obligatorios',
-        400
-      );
+    if (!vote) {
+      throw generateError('Any vote has been genated', 400);
     }
 
-    const id = await newVote(req.userId, comment_id, vote);
+    const id = await newVote(req.user_id);
 
     res.send({
       status: 'ok',
-      message: `Vote con id: ${id} creado correctamente`,
+      message: `Vote with id: ${id} succesfully created`,
     });
   } catch (error) {
     next(error);

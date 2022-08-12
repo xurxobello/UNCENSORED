@@ -23,8 +23,7 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "mysql2-promise": "^0.1.4",
-    "promise": "^8.1.0",
-    "promise-mysql2": "^1.0.0"
+    "promise": "^8.1.0"
   },
   "repository": {
     "type": "git",

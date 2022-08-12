@@ -87,7 +87,6 @@ const createUser = async (email, password, name) => {
 
     // 4. Crear el usuario
     const [newUser] = await connection.query(
-      
       `
     INSERT INTO users (email, password, name) VALUES (?,?,?)
 `,

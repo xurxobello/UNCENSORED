@@ -14,7 +14,7 @@ const getCommentController = async (req, res, next) => {
       data: comments,
     });
   } catch (error) {
-    next(error); //lanza la peticion al siguiente middelware definido--- Al haber un8 error), lo pasa al gestor de errores del archivo server.js
+    next(error); //lanza la peticion al siguiente middelware definido--- Al haber un error, lo pasa al gestor de errores del archivo server.js
   }
 };
 const newCommentController = async (req, res, next) => {
@@ -24,12 +24,12 @@ const newCommentController = async (req, res, next) => {
     if (!text) {
       throw generateError("'text' is a required field", 400);
     }
-    console.log(req.userId);
-    const id = await createComment(req.userId, text, req.body.title);
+    console.log(req.userId)
+    const id = await createComment(req.userId, req.body.text, req.body.title);
 
     res.send({
       status: 'ok',
-      message: `Comment con id: ${id} creado correctamente`,
+      message: `Comment with id: ${id} succesfully created`,
     });
   } catch (error) {
     next(error);
@@ -61,7 +61,7 @@ const deleteCommentController = async (req, res, next) => {
 
     if (req.userId !== comment.user_id) {
       throw generateError(
-        'Este comment no te pertenece, no lo puedes borrar',
+        'Can not delete comment. Check your user.',
         401
       );
     }
@@ -72,14 +72,14 @@ const deleteCommentController = async (req, res, next) => {
 
     res.send({
       status: 'Ok',
-      message: `Comment con id: ${id}  ha sido borrado`,
+      message: `Comment with id: ${id}  succesfully deleted`,
     });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = {
+module.exports = { // exportación a server.js
   getCommentController,
   newCommentController,
   getSingleCommentController,
